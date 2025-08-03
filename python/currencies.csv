@@ -1,0 +1,5 @@
+currency_code,currency_name,symbol,exchange_rate
+EUR,Euro,€,0.920000
+GBP,"British Pound",£,0.810000
+INR,"Indian Rupee",₹,79.500000
+USD,"United States Dollar",$,1.000000
