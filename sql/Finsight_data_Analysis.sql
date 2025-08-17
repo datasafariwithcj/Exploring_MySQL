@@ -22,10 +22,15 @@ WHERE
 
 -- How many accounts are there of each account type, and what’s the average balance for each type?
 SELECT 
-    account_type,
-    COUNT(*) AS num_accounts,
-    AVG(balance) AS avg_balance
+    a.account_type,
+    AVG(totals.total_balance) AS avg_balance_calculated
 FROM
-    accounts
-GROUP BY account_type
-ORDER BY num_accounts DESC;
+    accounts AS a
+        JOIN
+    (SELECT 
+        account_id, SUM(amount) AS total_balance
+    FROM
+        transactions
+    GROUP BY account_id) totals ON a.account_id = totals.account_id
+GROUP BY a.account_type
+ORDER BY avg_balance_calculated DESC;
